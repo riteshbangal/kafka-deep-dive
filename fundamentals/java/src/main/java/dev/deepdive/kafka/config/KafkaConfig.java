@@ -1,4 +1,4 @@
-package dev.riteshbangal.kafka.practice;
+package dev.deepdive.kafka.config;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.UUID;
 
-final class KafkaConfig {
+public final class KafkaConfig {
     static final String DEFAULT_TOPIC = "practice.hello";
     private static final Path ENV_FILE = Path.of(".env");
     private static final Map<String, String> DOTENV = loadDotenv();
@@ -16,11 +16,11 @@ final class KafkaConfig {
     private KafkaConfig() {
     }
 
-    static String topic() {
+    public static String topic() {
         return env("KAFKA_TOPIC", DEFAULT_TOPIC);
     }
 
-    static Properties commonProperties() {
+    public static Properties commonProperties() {
         var props = new Properties();
         props.put("bootstrap.servers", requiredEnv("KAFKA_BOOTSTRAP_SERVERS"));
         props.put("client.id", env("KAFKA_CLIENT_ID", "kafka-practice-" + UUID.randomUUID()));
@@ -37,7 +37,7 @@ final class KafkaConfig {
         return props;
     }
 
-    static String env(String name, String defaultValue) {
+    public static String env(String name, String defaultValue) {
         var value = System.getenv(name);
         if (value != null && !value.isBlank()) {
             return value;

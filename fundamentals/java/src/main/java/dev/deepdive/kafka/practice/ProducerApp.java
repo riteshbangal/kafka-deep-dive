@@ -1,5 +1,6 @@
-package dev.riteshbangal.kafka.practice;
+package dev.deepdive.kafka.practice;
 
+import dev.deepdive.kafka.config.KafkaConfig;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;

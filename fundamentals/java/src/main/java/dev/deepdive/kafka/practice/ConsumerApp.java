@@ -1,5 +1,6 @@
-package dev.riteshbangal.kafka.practice;
+package dev.deepdive.kafka.practice;
 
+import dev.deepdive.kafka.config.KafkaConfig;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;

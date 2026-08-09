@@ -18,7 +18,7 @@ dependencies {
 }
 
 application {
-  mainClass = "dev.riteshbangal.kafka.practice.ProducerApp"
+  mainClass = "dev.deepdive.kafka.practice.ProducerApp"
 }
 
 tasks.withType<JavaCompile>().configureEach {
@@ -29,12 +29,12 @@ tasks.register<JavaExec>("runProducer") {
   group = "application"
   description = "Sends one message to the configured remote Kafka topic."
   classpath = sourceSets.main.get().runtimeClasspath
-  mainClass = "dev.riteshbangal.kafka.practice.ProducerApp"
+  mainClass = "dev.deepdive.kafka.practice.ProducerApp"
 }
 
 tasks.register<JavaExec>("runConsumer") {
   group = "application"
   description = "Consumes messages from the configured remote Kafka topic."
   classpath = sourceSets.main.get().runtimeClasspath
-  mainClass = "dev.riteshbangal.kafka.practice.ConsumerApp"
+  mainClass = "dev.deepdive.kafka.practice.ConsumerApp"
 }
