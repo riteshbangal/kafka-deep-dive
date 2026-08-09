@@ -17,6 +17,7 @@ logs/
 .env
 .env.*
 !.env.example
+!sample.env
 
 # Java and Gradle
 .gradle/
@@ -25,8 +26,8 @@ out/
 target/
 *.class
 *.jar
-!gradle/wrapper/gradle-wrapper.jar
-!**/gradle/wrapper/gradle-wrapper.jar
+#!gradle/wrapper/gradle-wrapper.jar
+#!**/gradle/wrapper/gradle-wrapper.jar
 *.war
 *.ear
 
@@ -55,6 +56,13 @@ docker-compose.override.yml
 # Kubernetes and local tooling
 .kube/
 *.kubeconfig
+
+# Local certificates and secrets
+certificates/
+*.jks
+*.p12
+*.pem
+*.key
 
 # Temporary files
 tmp/

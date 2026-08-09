@@ -49,6 +49,8 @@ The current Java project is:
 
 - `fundamentals/java` (`kafka-fundamentals-java`)
 
+It is a plain Java Kafka producer/consumer practice project using the official Apache Kafka Java client. It is intended to connect to a remote Kafka cluster such as Aiven, not to a local Kafka container.
+
 Build it from the repository root:
 
 ```bash
@@ -65,6 +67,20 @@ cd fundamentals/java
 Java versions are configured with Gradle Java Toolchains. Java 21 is the default toolchain for Java projects unless an example documents a different requirement. Dependencies should come from Maven Central.
 
 Do not commit IntelliJ project metadata such as `.idea/` or `*.iml`. IntelliJ configuration should be derived from Gradle.
+
+Configure the Java example with a local `.env` file before running it:
+
+```bash
+cd fundamentals/java
+cp sample.env .env
+```
+
+Edit `.env` with your Aiven Kafka bootstrap server and credentials. Then run it from `fundamentals/java`:
+
+```bash
+./gradlew runProducer --args="Hello from Java"
+./gradlew runConsumer
+```
 
 ## Python Workflow
 

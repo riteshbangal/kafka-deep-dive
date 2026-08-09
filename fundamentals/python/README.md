@@ -4,13 +4,15 @@ This directory contains Python examples for Kafka fundamentals.
 
 ## StreamStore Hello World
 
-The current example is a small Kafka producer and consumer application in the `streamstore` package.
+The current project is a small Kafka producer and consumer application in the `streamstore` package.
 
-It uses:
+Use [python-hello-world.md](python-hello-world.md) for the Kafka flow, runtime behavior, and configuration details for this example.
+
+## Technology
 
 - Python 3.10 or newer
 - `confluent-kafka`
-- uv, or plain `pip` with `requirements.txt`
+- uv, or `pip` with `requirements.txt`
 
 ## Setup
 
@@ -30,16 +32,12 @@ pip install -r requirements.txt
 
 ## Kafka Configuration
 
-The example defaults to:
+The example expects an unsecured Kafka broker to be reachable before running the producer or consumer.
+
+Defaults:
 
 - Bootstrap servers: `localhost:9092`
 - Topic: `streamstore.hello`
-
-Start the local Kafka broker from the repository root before running the producer or consumer:
-
-```bash
-docker compose -f docker/docker-compose.yml up -d
-```
 
 Override these values with environment variables:
 
@@ -48,7 +46,7 @@ export KAFKA_BOOTSTRAP_SERVERS=localhost:9092
 export KAFKA_TOPIC=streamstore.hello
 ```
 
-The producer and consumer create the topic if it does not already exist.
+The repository Docker setup may be used as one way to provide Kafka locally. See [../../docker/README.md](../../docker/README.md) for Docker-related notes.
 
 ## Run
 
