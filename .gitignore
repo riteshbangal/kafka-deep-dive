@@ -1,0 +1,64 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor and IDE files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Logs
+*.log
+logs/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Java and Gradle
+.gradle/
+build/
+out/
+target/
+*.class
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+!**/gradle/wrapper/gradle-wrapper.jar
+*.war
+*.ear
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.python-version
+.venv/
+venv/
+env/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+*.egg-info/
+
+# uv
+.uv-cache/
+
+# Docker
+docker-compose.override.yml
+
+# Kubernetes and local tooling
+.kube/
+*.kubeconfig
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.swp
+*.swo
