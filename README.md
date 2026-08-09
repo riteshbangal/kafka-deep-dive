@@ -16,8 +16,8 @@ kafka-deep-dive/
 ├── docs/                 # Concept notes, guides, and reference material
 ├── fundamentals/         # Small focused examples for Kafka concepts
 │   ├── java/             # Independent Gradle project for Java fundamentals examples
-│   └── python/           # Python fundamentals examples
-├── docker/               # Docker and Docker Compose environments
+│   └── python/           # Python fundamentals examples and uv project
+├── docker/               # Docker Compose local Kafka environment
 ├── kubernetes/           # Kubernetes manifests and deployment notes
 ├── scripts/              # Repository helper scripts
 └── .github/              # GitHub metadata and project automation
@@ -37,7 +37,7 @@ kafka-deep-dive/
 
 ## Getting Started
 
-This repository currently contains the initial documentation structure and one Java fundamentals Gradle project. Kafka examples, local environments, and application projects will be added progressively.
+This repository currently contains the initial documentation structure, one Java fundamentals Gradle project, one Python fundamentals Kafka hello world example, and a Docker Compose local Kafka environment. Kafka examples and application projects will be added progressively.
 
 Start with the root README, then use the README in each directory to understand what belongs there as content is added.
 
@@ -65,6 +65,47 @@ cd fundamentals/java
 Java versions are configured with Gradle Java Toolchains. Java 21 is the default toolchain for Java projects unless an example documents a different requirement. Dependencies should come from Maven Central.
 
 Do not commit IntelliJ project metadata such as `.idea/` or `*.iml`. IntelliJ configuration should be derived from Gradle.
+
+## Python Workflow
+
+The current Python example is:
+
+- `fundamentals/python` (`streamstore`)
+
+Install dependencies from the Python project directory:
+
+```bash
+cd fundamentals/python
+uv sync
+```
+
+Run the Kafka hello world consumer and producer:
+
+```bash
+uv run python -m streamstore.consumer
+uv run python -m streamstore.producer "Hello from Kafka Deep Dive"
+```
+
+The example expects Kafka at `localhost:9092` by default and uses topic `streamstore.hello`. Override these with `KAFKA_BOOTSTRAP_SERVERS` and `KAFKA_TOPIC`.
+
+## Local Kafka
+
+Start Kafka and Kafka UI with Docker Compose:
+
+```bash
+docker compose -f docker/docker-compose.yml up -d
+```
+
+Endpoints:
+
+- Kafka broker: `localhost:9092`
+- Kafka UI: <http://localhost:8080>
+
+Stop the local environment:
+
+```bash
+docker compose -f docker/docker-compose.yml down
+```
 
 ## Roadmap
 

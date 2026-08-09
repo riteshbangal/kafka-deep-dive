@@ -1,0 +1,8 @@
+[project]
+name = "streamstore"
+version = "0.1.0"
+description = "Hello World Kafka producer and consumer application."
+requires-python = ">=3.10"
+dependencies = [
+    "confluent-kafka==2.15.0",
+]

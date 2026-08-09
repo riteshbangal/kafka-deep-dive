@@ -1,22 +1,22 @@
 # Python Hello World Sample
 
-This document explains how to run the existing Python Kafka hello-world sample.
-The long-term StreamStore application will be built as a production-grade Java
-Kafka application, while this Python code remains as a simple reference sample.
+This document explains how to run the Python Kafka hello world sample in
+`fundamentals/python`.
 
-Kafka runs locally from the repository root through `docker-compose.yml`.
+Kafka runs locally through `docker/docker-compose.yml`.
 
 ## Prerequisites
 
 - Docker Desktop or Docker Engine with Docker Compose
 - Python 3.10 or newer
+- uv, or `pip` with `venv`
 
 ## Start Kafka
 
 From the project root:
 
 ```bash
-docker compose up -d
+docker compose -f docker/docker-compose.yml up -d
 ```
 
 This starts:
@@ -27,7 +27,7 @@ This starts:
 Check the containers:
 
 ```bash
-docker compose ps
+docker compose -f docker/docker-compose.yml ps
 ```
 
 ## Sample Directory
@@ -35,7 +35,7 @@ docker compose ps
 Move into the Python sample directory before running Python commands:
 
 ```bash
-cd examples/python-hello-world
+cd fundamentals/python
 ```
 
 ## Install Python Dependencies
@@ -115,11 +115,11 @@ KAFKA_TOPIC=my-topic uv run python -m streamstore.producer
 ## Stop Kafka
 
 ```bash
-docker compose down
+docker compose -f docker/docker-compose.yml down
 ```
 
 To remove Kafka data and containers:
 
 ```bash
-docker compose down -v
+docker compose -f docker/docker-compose.yml down -v
 ```
