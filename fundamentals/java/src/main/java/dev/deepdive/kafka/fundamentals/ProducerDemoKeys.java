@@ -12,16 +12,15 @@ import org.slf4j.LoggerFactory;
 import java.time.Instant;
 import java.util.Properties;
 
-public class ProducerDemoWithCallback {
+public class ProducerDemoKeys {
 
-    private static final Logger log = LoggerFactory.getLogger(ProducerDemoWithCallback.class.getSimpleName());
+    private static final Logger log = LoggerFactory.getLogger(ProducerDemoKeys.class.getSimpleName());
 
     public static void main(String[] args) {
+        log.info("I am a Kafka Producer!");
 
-        log.info("I am a Kafka Producer with Callback!");
-
-        var topic = KafkaConfig.topic();
-        var message = args.length == 0 ? "conduktor/kafka-beginners-course | " + Instant.now() : String.join(" ", args);
+         var topic = KafkaConfig.topic();
+         var message = args.length == 0 ? "conduktor/kafka-beginners-course | " + Instant.now() : String.join(" ", args);
 
         // Load the common Kafka properties and set the producer-specific properties
         Properties properties = KafkaConfig.commonProperties();
@@ -30,21 +29,21 @@ public class ProducerDemoWithCallback {
         properties.setProperty("key.serializer", StringSerializer.class.getName());
         properties.setProperty("value.serializer", StringSerializer.class.getName());
 
-        properties.setProperty("batch.size", "400");
-
-        // properties.setProperty("partitioner.class", RoundRobinPartitioner.class.getName());
-
         // create the Producer
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
 
 
-        for (int j=0; j<10; j++){
+        for (int j=0; j<2; j++){
 
-            for (int i=0; i<30; i++){
+            for (int i=0; i<10; i++){
+
+                // String topic = "demo_java";
+                String key = "id_" + i;
+                String value = "hello world " + i;
 
                 // create a Producer Record
                 ProducerRecord<String, String> producerRecord =
-                        new ProducerRecord<>(topic, message);
+                        new ProducerRecord<>(topic, key, value);
 
                 // send data
                 producer.send(producerRecord, new Callback() {
@@ -53,11 +52,7 @@ public class ProducerDemoWithCallback {
                         // executes every time a record successfully sent or an exception is thrown
                         if (e == null) {
                             // the record was successfully sent
-                            log.info("Received new metadata \n" +
-                                    "Topic: " + metadata.topic() + "\n" +
-                                    "Partition: " + metadata.partition() + "\n" +
-                                    "Offset: " + metadata.offset() + "\n" +
-                                    "Timestamp: " + metadata.timestamp());
+                            log.info("Key: " + key + " | Partition: " + metadata.partition());
                         } else {
                             log.error("Error while producing", e);
                         }
@@ -70,8 +65,8 @@ public class ProducerDemoWithCallback {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
         }
+
 
 
         // tell the producer to send all data and block until done -- synchronous

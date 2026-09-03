@@ -32,6 +32,13 @@ tasks.register<JavaExec>("runProducer") {
   mainClass = "dev.deepdive.kafka.practice.ProducerApp"
 }
 
+tasks.register<JavaExec>("runProducerDemoWithCallback") {
+  group = "application"
+  description = "Sends one message to the configured remote Kafka topic."
+  classpath = sourceSets.main.get().runtimeClasspath
+  mainClass = "dev.deepdive.kafka.fundamentals.ProducerDemoWithCallback"
+}
+
 tasks.register<JavaExec>("runConsumer") {
   group = "application"
   description = "Consumes messages from the configured remote Kafka topic."
